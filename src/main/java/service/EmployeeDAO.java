@@ -2,16 +2,16 @@ package service;
 
 import model.Employee;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public interface EmployeeDAO {
     void addToTable(Employee employee);
 
     Employee getById(int id);
 
-    ArrayList<Employee> getAllEmployees();
+    List<Employee> getAllEmployees();
 
-    void updateEmployee(int id, Employee employee);
+    void updateEmployee(Employee employee);
 
-    void deleteEmployee(int id);
+    void deleteEmployee(Employee employee);
 }

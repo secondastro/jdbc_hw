@@ -19,7 +19,7 @@ public class Employee {
     @Column(name = "age")
     private int age;
     @Column(name = "city_id")
-    private int cityId;
+    private Integer cityId;
     public Employee() {
     }
 
@@ -27,29 +27,28 @@ public class Employee {
         this.id = id;
     }
 
-    public Employee(int id, String firstName, String lastName, String gender, int age, String cityId) {
+    public Employee(int id, String firstName, String lastName, String gender, int age, Integer cityId) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
         this.age = age;
-        if (cityId == null) {
-            this.cityId = 0;
-        } else {
-            this.cityId = Integer.parseInt(cityId);
-        }
+//        if (cityId == null) {
+//            this.cityId = 0;
+//        } else {
+            this.cityId = cityId;
     }
 
-    public Employee(String firstName, String lastName, String gender, int age, String cityId) {
+    public Employee(String firstName, String lastName, String gender, int age, Integer cityId) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
         this.age = age;
-        if (cityId == null) {
-            this.cityId = 0;
-        } else {
-            this.cityId = Integer.parseInt(cityId);
-        }
+//        if (cityId == null) {
+//            this.cityId = 0;
+//        } else {
+            this.cityId = cityId;
+
     }
 
     public int getId() {
@@ -92,11 +91,11 @@ public class Employee {
         this.age = age;
     }
 
-    public int getCityId() {
+    public Integer getCityId() {
         return cityId;
     }
 
-    public void setCityId(int cityId) {
+    public void setCityId(Integer cityId) {
         this.cityId = cityId;
     }
 

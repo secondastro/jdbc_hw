@@ -8,7 +8,7 @@ public class Application {
 
         Employee employee = new Employee(
                 "Olya", "Lukina",
-                "female", 25, "1");
+                "female", 25, 1);
 
         employeeDAO.addToTable(employee);
 
@@ -19,7 +19,7 @@ public class Application {
         }
 
         Employee emp1 = new Employee(
-                "Valera", "Kukuev", "male", 34, "4");
+                "Valera", "Kukuev", "male", 34, 4);
         emp1.setId(5);
 
         employeeDAO.updateEmployee(emp1);

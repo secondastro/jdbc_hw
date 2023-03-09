@@ -1,33 +1,54 @@
 package model;
 
+import javax.persistence.*;
 import java.util.Objects;
-
+@Entity
+@Table(name = "employee")
 public class Employee {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
-    private String firstName;
-    private String lastName;
-    private String gender;
-    private int age;
-    private int cityId;
 
+    @Column(name = "first_name")
+    private String firstName;
+    @Column(name = "last_name")
+    private String lastName;
+    @Column(name = "gender")
+    private String gender;
+    @Column(name = "age")
+    private int age;
+    @Column(name = "city_id")
+    private Integer cityId;
     public Employee() {
     }
 
-    public Employee(int id, String firstName, String lastName, String gender, int age, int cityId) {
+    public Employee(int id) {
+        this.id = id;
+    }
+
+    public Employee(int id, String firstName, String lastName, String gender, int age, Integer cityId) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
         this.age = age;
-        this.cityId = cityId;
+//        if (cityId == null) {
+//            this.cityId = 0;
+//        } else {
+            this.cityId = cityId;
     }
 
-    public Employee(String firstName, String lastName, String gender, int age, int cityId) {
+    public Employee(String firstName, String lastName, String gender, int age, Integer cityId) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
         this.age = age;
-        this.cityId = cityId;
+//        if (cityId == null) {
+//            this.cityId = 0;
+//        } else {
+            this.cityId = cityId;
+
     }
 
     public int getId() {
@@ -70,11 +91,11 @@ public class Employee {
         this.age = age;
     }
 
-    public int getCityId() {
+    public Integer getCityId() {
         return cityId;
     }
 
-    public void setCityId(int cityId) {
+    public void setCityId(Integer cityId) {
         this.cityId = cityId;
     }
 

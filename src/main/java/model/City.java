@@ -1,41 +1,50 @@
 package model;
 
-import java.util.Objects;
+import net.bytebuddy.dynamic.loading.InjectionClassLoader;
+import org.hibernate.annotations.Cascade;
 
+import javax.persistence.*;
+import java.util.List;
+
+@Entity
 public class City {
-    private int city_id;
-    private String city_name;
+    @OneToMany(mappedBy = "city",cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Employee> employeeList;
+    @Id
+    @Column(name = "city_id")
+    private int cityId;
 
-    public City(int city_id, String city_name) {
-        this.city_id = city_id;
-        this.city_name = city_name;
+    @Column(name = "city_name")
+    private String cityName;
+
+    public City(int cityId, String cityName) {
+        this.cityId = cityId;
+        this.cityName = cityName;
     }
 
-    public int getCity_id() {
-        return city_id;
+
+    public City() {
+
     }
 
-    public void setCity_id(int city_id) {
-        this.city_id = city_id;
+    public int getCityId() {
+        return cityId;
     }
 
-    public String getCity_name() {
-        return city_name;
+    public void setCityId(int cityId) {
+        this.cityId = cityId;
     }
 
-    public void setCity_name(String city_name) {
-        this.city_name = city_name;
+    public String getCityName() {
+        return cityName;
+    }
+
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof City city)) return false;
-        return getCity_id() == city.getCity_id();
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getCity_id());
+    public String toString() {
+        return cityName;
     }
 }

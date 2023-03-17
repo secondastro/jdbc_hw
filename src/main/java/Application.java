@@ -1,4 +1,8 @@
+
+import model.City;
 import model.Employee;
+import service.CityDAO;
+import service.CityDAOImpl;
 import service.EmployeeDAO;
 import service.EmployeeDAOImpl;
 
@@ -6,29 +10,34 @@ public class Application {
     public static void main(String[] args) {
         EmployeeDAO employeeDAO = new EmployeeDAOImpl();
 
+        CityDAO cityDAO = new CityDAOImpl();
+
+        City city = new City(6, "Кисловодск");
+
+        cityDAO.addToTable(city);
+
         Employee employee = new Employee(
-                "Olya", "Lukina",
-                "female", 25, 1);
+                "Leonid", "Yackubovich",
+                "male", 90, city);
 
         employeeDAO.addToTable(employee);
 
-        System.out.println(employeeDAO.getById(20));
+        System.out.println(cityDAO.getById(6));
 
-        for (Employee emp : employeeDAO.getAllEmployees()) {
-            System.out.println(emp);
+        for (City c : cityDAO.getAllCities()) {
+            System.out.println(c);
         }
 
-        Employee emp1 = new Employee(
-                "Valera", "Kukuev", "male", 34, 4);
-        emp1.setId(5);
+        city = new City(6, "Чайковский");
 
-        employeeDAO.updateEmployee(emp1);
-        System.out.println(employeeDAO.getById(5));
+        cityDAO.updateCity(city);
 
-        emp1 = new Employee(16);
-        employeeDAO.deleteEmployee(emp1);
-        for (Employee emp : employeeDAO.getAllEmployees()) {
-            System.out.println(emp);
+        System.out.println(cityDAO.getById(6));
+
+        cityDAO.deleteCity(city);
+
+        for (City c : cityDAO.getAllCities()) {
+            System.out.println(c);
         }
     }
 }

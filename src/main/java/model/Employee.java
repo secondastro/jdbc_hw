@@ -5,6 +5,9 @@ import java.util.Objects;
 @Entity
 @Table(name = "employee")
 public class Employee {
+    @ManyToOne
+    @JoinColumn(name = "city_id")
+    private City city;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -18,8 +21,6 @@ public class Employee {
     private String gender;
     @Column(name = "age")
     private int age;
-    @Column(name = "city_id")
-    private Integer cityId;
     public Employee() {
     }
 
@@ -27,29 +28,23 @@ public class Employee {
         this.id = id;
     }
 
-    public Employee(int id, String firstName, String lastName, String gender, int age, Integer cityId) {
+    public Employee(int id, String firstName, String lastName, String gender, int age, City city) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
         this.age = age;
-//        if (cityId == null) {
-//            this.cityId = 0;
-//        } else {
-            this.cityId = cityId;
+        this.city = city;
     }
 
-    public Employee(String firstName, String lastName, String gender, int age, Integer cityId) {
+    public Employee(String firstName, String lastName, String gender, int age, City city) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
         this.age = age;
-//        if (cityId == null) {
-//            this.cityId = 0;
-//        } else {
-            this.cityId = cityId;
-
+        this.city = city;
     }
+
 
     public int getId() {
         return id;
@@ -91,25 +86,14 @@ public class Employee {
         this.age = age;
     }
 
-    public Integer getCityId() {
-        return cityId;
+    public City getCity() {
+        return city;
     }
 
-    public void setCityId(Integer cityId) {
-        this.cityId = cityId;
+    public void setCity(City cityId) {
+        this.city = cityId;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Employee employee)) return false;
-        return getId() == employee.getId();
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId());
-    }
 
     @Override
     public String toString() {
@@ -119,7 +103,7 @@ public class Employee {
                 ", lastName='" + lastName + '\'' +
                 ", gender='" + gender + '\'' +
                 ", age=" + age +
-                ", cityId=" + cityId +
+                ", city=" + city +
                 '}';
     }
 }
